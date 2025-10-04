@@ -37,6 +37,7 @@ class ApplicationManager {
         // Modern event handling
         document.addEventListener('DOMContentLoaded', () => {
             this.enhanceUI();
+            this.setupNlpProcessor(); // New: Setup NLP processor event listener
         });
 
         // Intersection Observer for animations
@@ -74,6 +75,38 @@ class ApplicationManager {
                 feature.style.transform = 'scale(1)';
             });
         });
+    }
+
+    setupNlpProcessor() {
+        const processButton = document.getElementById(\'process-button\');
+        const nlpInput = document.getElementById(\'nlp-input\');
+        const nlpOutput = document.getElementById(\'nlp-output\');
+
+        if (processButton && nlpInput && nlpOutput) {
+            processButton.addEventListener(\'click\', async () => {
+                const text = nlpInput.value;
+                if (text.trim() === \'\') {
+                    nlpOutput.textContent = \'Please enter some text to process.\';
+                    return;
+                }
+
+                nlpOutput.textContent = \'Processing...\';
+                try {
+                    const response = await fetch(\'/api/process\', {
+                        method: \'POST\',
+                        headers: {
+                            \'Content-Type\': \'application/json\'
+                        },
+                        body: JSON.stringify({ text: text })
+                    });
+                    const data = await response.json();
+                    nlpOutput.textContent = `Original: ${data.original_text}\nProcessed: ${data.processed_text}`;
+                } catch (error) {
+                    console.error(\'Error processing text:\', error);
+                    nlpOutput.textContent = \'Error processing text. Please try again.\';
+                }
+            });
+        }
     }
 
     setupScrollAnimations() {
