@@ -10,8 +10,10 @@ class TestApp(unittest.TestCase):
     def test_index(self):
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        data = json.loads(response.data)
-        self.assertEqual(data['project'], 'Natural-Language-Processing-Suite')
+        self.assertIn(b"<!DOCTYPE html>", response.data)
+        self.assertIn(b"Natural-Language-Processing-Suite", response.data)
+
+        
 
     def test_status(self):
         response = self.app.get('/api/status')
