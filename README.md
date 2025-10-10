@@ -32,6 +32,20 @@ This project integrates a diverse set of technologies to ensure high performance
 -   **Modern Web Features**: Async/await, Web APIs, ES6 classes
 -   **Visualization**: Interactive charts, real-time dashboards
 
+### Screenshots
+
+#### Web Interface
+
+![NLP Suite Dashboard](https://via.placeholder.com/1200x600/1f2937/ffffff?text=NLP+Suite+Dashboard)
+
+*Interactive web interface for natural language processing tasks*
+
+#### Analytics Dashboard
+
+![Analytics View](https://via.placeholder.com/1200x400/1f2937/ffffff?text=Analytics+Dashboard)
+
+*R-powered analytics and visualization dashboard*
+
 ### Features
 
 #### Core Functionality
@@ -67,7 +81,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # 3. R setup (install required packages)
-Rscript -e "install.packages(c(\'ggplot2\', \'dplyr\', \'corrplot\', \'plotly\'))"
+Rscript -e "install.packages(c(\'ggplot2\', \'dplyr\', \'corrplot\', \'plotly\'), repos=\'http://cran.us.r-project.org\')"
 
 # 4. Create data directory and sample data (if not present)
 mkdir -p data
@@ -127,11 +141,23 @@ The Python backend exposes the following API endpoints:
 
 | Method | Endpoint          | Description                                  | Example Usage                                    |
 | :----- | :---------------- | :------------------------------------------- | :----------------------------------------------- |
-| `GET`  | `/`               | Serves the main web interface.               | `fetch('/')`                                     |
-| `POST` | `/api/process`    | Processes text data using NLP algorithms.    | `fetch('/api/process', { method: 'POST', body: JSON.stringify({ text: '...' }) })` |
-| `GET`  | `/api/analytics`  | Retrieves analytics results.                 | `fetch('/api/analytics')`                        |
-| `POST` | `/api/upload`     | Uploads files for processing.                | `fetch('/api/upload', { method: 'POST', body: formData })` |
-| `GET`  | `/api/status`     | Checks the system status.                    | `fetch('/api/status')`                           |
+| `GET`  | `/`               | Serves the main web interface.               | `curl http://localhost:5000/`                    |
+| `POST` | `/api/process`    | Processes text data using NLP algorithms.    | `curl -X POST http://localhost:5000/api/process -H "Content-Type: application/json" -d '{"text": "Sample text"}'` |
+| `GET`  | `/api/analytics`  | Retrieves analytics results.                 | `curl http://localhost:5000/api/analytics`       |
+| `POST` | `/api/upload`     | Uploads files for processing.                | `curl -X POST http://localhost:5000/api/upload -F "file=@document.txt"` |
+| `GET`  | `/api/status`     | Checks the system status.                    | `curl http://localhost:5000/api/status`          |
+
+**Example API Response:**
+
+```json
+{
+  "status": "success",
+  "processed_text": "Sample processed text",
+  "sentiment": "positive",
+  "confidence": 0.92,
+  "timestamp": "2024-10-09T20:00:00Z"
+}
+```
 
 ### Configuration
 
@@ -227,7 +253,7 @@ source venv/bin/activate  # No Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # 3. Configuração R (instalar pacotes necessários)
-Rscript -e "install.packages(c(\'ggplot2\', \'dplyr\', \'corrplot\', \'plotly\'))"
+Rscript -e "install.packages(c(\'ggplot2\', \'dplyr\', \'corrplot\', \'plotly\'), repos=\'http://cran.us.r-project.org\')"
 
 # 4. Criar diretório de dados e dados de exemplo (se não existirem)
 mkdir -p data
