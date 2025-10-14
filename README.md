@@ -7,7 +7,7 @@
 ![Top Language](https://img.shields.io/github/languages/top/galafis/Natural-Language-Processing-Suite)
 
 
-![Natural Language Processing](https://raw.githubusercontent.com/galafis/Natural-Language-Processing-Suite/main/assets/nlp_hero_image.jpg)
+![Natural Language Processing](assets/nlp_hero_image.jpg)
 
 
 ## English
@@ -31,20 +31,6 @@ This project integrates a diverse set of technologies to ensure high performance
 -   **Styling**: CSS Grid, Flexbox, responsive design
 -   **Modern Web Features**: Async/await, Web APIs, ES6 classes
 -   **Visualization**: Interactive charts, real-time dashboards
-
-### Screenshots
-
-#### Web Interface
-
-![NLP Suite Dashboard](https://via.placeholder.com/1200x600/1f2937/ffffff?text=NLP+Suite+Dashboard)
-
-*Interactive web interface for natural language processing tasks*
-
-#### Analytics Dashboard
-
-![Analytics View](https://via.placeholder.com/1200x400/1f2937/ffffff?text=Analytics+Dashboard)
-
-*R-powered analytics and visualization dashboard*
 
 ### Features
 
