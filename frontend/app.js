@@ -78,32 +78,32 @@ class ApplicationManager {
     }
 
     setupNlpProcessor() {
-        const processButton = document.getElementById(\'process-button\');
-        const nlpInput = document.getElementById(\'nlp-input\');
-        const nlpOutput = document.getElementById(\'nlp-output\');
+        const processButton = document.getElementById('process-button');
+        const nlpInput = document.getElementById('nlp-input');
+        const nlpOutput = document.getElementById('nlp-output');
 
         if (processButton && nlpInput && nlpOutput) {
-            processButton.addEventListener(\'click\', async () => {
+            processButton.addEventListener('click', async () => {
                 const text = nlpInput.value;
-                if (text.trim() === \'\') {
-                    nlpOutput.textContent = \'Please enter some text to process.\';
+                if (text.trim() === '') {
+                    nlpOutput.textContent = 'Please enter some text to process.';
                     return;
                 }
 
-                nlpOutput.textContent = \'Processing...\';
+                nlpOutput.textContent = 'Processing...';
                 try {
-                    const response = await fetch(\'/api/process\', {
-                        method: \'POST\',
+                    const response = await fetch('/api/process', {
+                        method: 'POST',
                         headers: {
-                            \'Content-Type\': \'application/json\'
+                            'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({ text: text })
                     });
                     const data = await response.json();
                     nlpOutput.textContent = `Original: ${data.original_text}\nProcessed: ${data.processed_text}`;
                 } catch (error) {
-                    console.error(\'Error processing text:\', error);
-                    nlpOutput.textContent = \'Error processing text. Please try again.\';
+                    console.error('Error processing text:', error);
+                    nlpOutput.textContent = 'Error processing text. Please try again.';
                 }
             });
         }
