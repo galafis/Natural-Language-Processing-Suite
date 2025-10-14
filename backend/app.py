@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template, request
 import json
 from datetime import datetime
 
-app = Flask(__name__, static_folder="../", template_folder="../")
+app = Flask(__name__, static_folder="../frontend", template_folder="../frontend")
 
 @app.route("/")
 def index():
