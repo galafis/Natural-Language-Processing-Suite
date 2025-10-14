@@ -1,1 +1,9 @@
-text,category\nhello world,greeting\nNLP is great,technology
+text,category
+hello world,greeting
+NLP is great,technology
+how are you,greeting
+machine learning rocks,technology
+good morning,greeting
+artificial intelligence,technology
+nice to meet you,greeting
+data science is fascinating,technology

@@ -76,9 +76,11 @@ git clone https://github.com/galafis/Natural-Language-Processing-Suite.git
 cd Natural-Language-Processing-Suite
 
 # 2. Python setup
+cd backend
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
+cd ..
 
 # 3. R setup (install required packages)
 Rscript -e "install.packages(c(\'ggplot2\', \'dplyr\', \'corrplot\', \'plotly\'), repos=\'http://cran.us.r-project.org\')"
@@ -94,28 +96,37 @@ echo "text,category\nhello world,greeting\nNLP is great,technology" > data/data.
 
 1.  **Start the Python Backend (Flask/FastAPI)**
     ```bash
+    cd backend
     python app.py
     ```
-    The application will typically run on `http://localhost:5000`.
+    The application will run on `http://localhost:5000`.
 
 2.  **Access the Web Interface**
-    Open `index.html` directly in your web browser, or navigate to `http://localhost:5000` if the Python backend is serving it.
+    Navigate to `http://localhost:5000` in your web browser.
     The interactive dashboard provides real-time functionality and is responsive across devices.
 
 3.  **Run R Analytics**
     You can execute the R analytics script independently:
     ```r
     # Load R analytics script
-    source(\'analytics.R\')
+    source('analytics/analytics.R')
     
     # Create analyzer instance
     analyzer <- DataAnalyzer$new()
     
     # Load and analyze data from data.csv
-    analyzer$load_data(\'data/data.csv\')
+    analyzer$load_data('data/data.csv')
     analyzer$analyze()
     analyzer$generate_report()
     ```
+
+#### Testing the API
+
+Run tests to verify functionality:
+```bash
+cd backend
+python test_app.py
+```
 
 ### File Structure
 
@@ -123,6 +134,8 @@ echo "text,category\nhello world,greeting\nNLP is great,technology" > data/data.
 Natural-Language-Processing-Suite/
 ├── backend/            # Python backend (Flask/FastAPI) files
 │   ├── app.py          # Main Python application
+│   ├── config.py       # Application configuration
+│   ├── test_app.py     # Unit tests
 │   └── requirements.txt  # Python dependencies
 ├── frontend/           # Web interface files
 │   ├── index.html      # Main HTML file
@@ -132,6 +145,8 @@ Natural-Language-Processing-Suite/
 │   └── analytics.R     # R statistical analysis script
 ├── data/               # Data files and samples
 │   └── data.csv        # Sample data file
+├── assets/             # Assets and images
+│   └── nlp_hero_image.jpg  # Project hero image
 └── README.md           # Project documentation
 ```
 
@@ -161,10 +176,10 @@ The Python backend exposes the following API endpoints:
 
 ### Configuration
 
-Configuration settings can be found and modified in `config.py` (if applicable, or within `app.py`):
+Configuration settings can be found and modified in `backend/config.py`:
 
 ```python
-# Example configuration (config.py or app.py)
+# Example configuration (backend/config.py)
 APP_CONFIG = {
     'debug': True,
     'host': '0.0.0.0',
@@ -178,6 +193,29 @@ ANALYTICS_CONFIG = {
     'export_formats': ['json', 'csv', 'pdf']
 }
 ```
+
+### Troubleshooting
+
+#### Issue: "ModuleNotFoundError: No module named 'flask'"
+**Solution:** Make sure the virtual environment is activated and dependencies are installed:
+```bash
+cd backend
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+#### Issue: Port 5000 already in use
+**Solution:** Change the port in `backend/config.py` or specify a different port when running the application.
+
+#### Issue: Tests fail
+**Solution:** Verify all dependencies are installed:
+```bash
+cd backend
+python test_app.py -v
+```
+
+#### Issue: R not installed
+**Solution:** R analytics is optional. You can use Python-only features if R is not available.
 
 ### Performance Features
 -   **Multi-threading**: Utilizes parallel processing for enhanced performance.
@@ -248,9 +286,11 @@ git clone https://github.com/galafis/Natural-Language-Processing-Suite.git
 cd Natural-Language-Processing-Suite
 
 # 2. Configuração Python
+cd backend
 python -m venv venv
 source venv/bin/activate  # No Windows: venv\Scripts\activate
 pip install -r requirements.txt
+cd ..
 
 # 3. Configuração R (instalar pacotes necessários)
 Rscript -e "install.packages(c(\'ggplot2\', \'dplyr\', \'corrplot\', \'plotly\'), repos=\'http://cran.us.r-project.org\')"
@@ -266,28 +306,37 @@ echo "text,category\nhello world,greeting\nNLP is great,technology" > data/data.
 
 1.  **Iniciar o Backend Python (Flask/FastAPI)**
     ```bash
+    cd backend
     python app.py
     ```
-    A aplicação geralmente será executada em `http://localhost:5000`.
+    A aplicação será executada em `http://localhost:5000`.
 
 2.  **Acessar a Interface Web**
-    Abra `index.html` diretamente no seu navegador web, ou navegue para `http://localhost:5000` se o backend Python estiver servindo-o.
+    Navegue para `http://localhost:5000` no seu navegador web.
     O dashboard interativo oferece funcionalidade em tempo real e é responsivo em todos os dispositivos.
 
 3.  **Executar Análises R**
     Você pode executar o script de análises R independentemente:
     ```r
     # Carregar script de análises R
-    source(\'analytics.R\')
+    source('analytics/analytics.R')
     
     # Criar instância do analisador
     analyzer <- DataAnalyzer$new()
     
     # Carregar e analisar dados de data.csv
-    analyzer$load_data(\'data/data.csv\')
+    analyzer$load_data('data/data.csv')
     analyzer$analyze()
     analyzer$generate_report()
     ```
+
+#### Testando a API
+
+Execute testes para verificar a funcionalidade:
+```bash
+cd backend
+python test_app.py
+```
 
 ### Estrutura de Arquivos
 
@@ -295,6 +344,8 @@ echo "text,category\nhello world,greeting\nNLP is great,technology" > data/data.
 Natural-Language-Processing-Suite/
 ├── backend/            # Arquivos do backend Python (Flask/FastAPI)
 │   ├── app.py          # Aplicação Python principal
+│   ├── config.py       # Configurações da aplicação
+│   ├── test_app.py     # Testes unitários
 │   └── requirements.txt  # Dependências Python
 ├── frontend/           # Arquivos da interface web
 │   ├── index.html      # Arquivo HTML principal
@@ -304,6 +355,8 @@ Natural-Language-Processing-Suite/
 │   └── analytics.R     # Script de análise estatística R
 ├── data/               # Arquivos de dados e exemplos
 │   └── data.csv        # Arquivo de dados de exemplo
+├── assets/             # Recursos e imagens
+│   └── nlp_hero_image.jpg  # Imagem hero do projeto
 └── README.md           # Documentação do projeto
 ```
 
@@ -313,18 +366,37 @@ O backend Python expõe os seguintes endpoints da API:
 
 | Método | Endpoint          | Descrição                                    | Exemplo de Uso                                       |
 | :----- | :---------------- | :------------------------------------------- | :--------------------------------------------------- |
-| `GET`  | `/`               | Serve a interface web principal.             | `fetch('/')`                                         |
-| `POST` | `/api/process`    | Processa dados de texto usando algoritmos NLP. | `fetch('/api/process', { method: 'POST', body: JSON.stringify({ text: '...' }) })` |
-| `GET`  | `/api/analytics`  | Recupera resultados de análises.             | `fetch('/api/analytics')`                            |
-| `POST` | `/api/upload`     | Carrega arquivos para processamento.         | `fetch('/api/upload', { method: 'POST', body: formData })` |
-| `GET`  | `/api/status`     | Verifica o status do sistema.                | `fetch('/api/status')`                               |
+| `GET`  | `/`               | Serve a interface web principal.             | `curl http://localhost:5000/`                        |
+| `POST` | `/api/process`    | Processa dados de texto usando algoritmos NLP. | `curl -X POST http://localhost:5000/api/process -H "Content-Type: application/json" -d '{"text": "Olá mundo"}'` |
+| `GET`  | `/api/analytics`  | Recupera resultados de análises.             | `curl http://localhost:5000/api/analytics`           |
+| `POST` | `/api/upload`     | Carrega arquivos para processamento.         | `curl -X POST http://localhost:5000/api/upload -F "file=@documento.txt"` |
+| `GET`  | `/api/status`     | Verifica o status do sistema.                | `curl http://localhost:5000/api/status`              |
+
+**Exemplo de Resposta da API (POST /api/process):**
+
+```json
+{
+  "original_text": "Olá mundo",
+  "processed_text": "Processed: OLÁ MUNDO"
+}
+```
+
+**Exemplo de Resposta da API (GET /api/status):**
+
+```json
+{
+  "status": "running",
+  "version": "1.0.0",
+  "timestamp": "2025-10-14T21:15:00.000000"
+}
+```
 
 ### Configuração
 
-As configurações podem ser encontradas e modificadas em `config.py` (se aplicável, ou dentro de `app.py`):
+As configurações podem ser encontradas e modificadas em `backend/config.py`:
 
 ```python
-# Exemplo de configuração (config.py ou app.py)
+# Exemplo de configuração (backend/config.py)
 APP_CONFIG = {
     'debug': True,
     'host': '0.0.0.0',
@@ -338,6 +410,29 @@ ANALYTICS_CONFIG = {
     'export_formats': ['json', 'csv', 'pdf']
 }
 ```
+
+### Solução de Problemas
+
+#### Problema: Erro "ModuleNotFoundError: No module named 'flask'"
+**Solução:** Certifique-se de que o ambiente virtual está ativado e as dependências estão instaladas:
+```bash
+cd backend
+source venv/bin/activate  # No Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+#### Problema: Porta 5000 já em uso
+**Solução:** Altere a porta em `backend/config.py` ou especifique uma porta diferente ao executar a aplicação.
+
+#### Problema: Testes falham
+**Solução:** Verifique se todas as dependências estão instaladas:
+```bash
+cd backend
+python test_app.py -v
+```
+
+#### Problema: R não instalado
+**Solução:** A análise R é opcional. Você pode usar apenas os recursos Python se o R não estiver disponível.
 
 ### Recursos de Performance
 -   **Multi-threading**: Utiliza processamento paralelo para melhor desempenho.
