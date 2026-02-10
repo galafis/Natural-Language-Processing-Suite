@@ -3,7 +3,6 @@
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)
 ![R](https://img.shields.io/badge/R-4.0%2B-blue?logo=r&logoColor=white)
-![GitHub Actions](https://github.com/galafis/Natural-Language-Processing-Suite/workflows/CI/badge.svg)
 ![Top Language](https://img.shields.io/github/languages/top/galafis/Natural-Language-Processing-Suite)
 
 
