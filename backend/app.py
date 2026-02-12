@@ -1,11 +1,11 @@
 from flask import Flask, jsonify, render_template, request
-import json
+from config import APP_CONFIG
 from datetime import datetime
 
 app = Flask(__name__, static_folder="../frontend", template_folder="../frontend")
 
-# Configure max content length (16MB)
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
+# Configure max content length
+app.config['MAX_CONTENT_LENGTH'] = APP_CONFIG.get('max_content_length', 16 * 1024 * 1024)
 
 @app.errorhandler(413)
 def request_entity_too_large(error):
@@ -93,4 +93,8 @@ def status():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5000)
+    app.run(
+        debug=APP_CONFIG.get('debug', True),
+        host=APP_CONFIG.get('host', '0.0.0.0'),
+        port=APP_CONFIG.get('port', 5000)
+    )

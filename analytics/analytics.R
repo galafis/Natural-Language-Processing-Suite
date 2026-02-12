@@ -5,7 +5,6 @@
 library(ggplot2)
 library(dplyr)
 library(corrplot)
-library(plotly)
 
 # Data Analysis Class
 DataAnalyzer <- setRefClass("DataAnalyzer",

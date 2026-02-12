@@ -34,20 +34,20 @@ class ApplicationManager {
     }
 
     setupEventListeners() {
-        // Modern event handling
-        document.addEventListener('DOMContentLoaded', () => {
+        // Run UI setup immediately if DOM is ready, otherwise wait for it
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.enhanceUI();
+                this.setupNlpProcessor();
+            });
+        } else {
             this.enhanceUI();
-            this.setupNlpProcessor(); // New: Setup NLP processor event listener
-        });
+            this.setupNlpProcessor();
+        }
 
         // Intersection Observer for animations
         if ('IntersectionObserver' in window) {
             this.setupScrollAnimations();
-        }
-
-        // Service Worker registration
-        if ('serviceWorker' in navigator) {
-            this.registerServiceWorker();
         }
     }
 
@@ -123,20 +123,11 @@ class ApplicationManager {
         });
     }
 
-    async registerServiceWorker() {
-        try {
-            const registration = await navigator.serviceWorker.register('/sw.js');
-            console.log('Service Worker registered:', registration);
-        } catch (error) {
-            console.log('Service Worker registration failed:', error);
-        }
-    }
-
     showTechDetails(tech) {
         const details = {
-            'Python': 'Backend processing with Flask, Django, FastAPI. ML with scikit-learn, TensorFlow.',
-            'JavaScript': 'Modern ES6+ features, async/await, Web APIs, React, Node.js.',
-            'R': 'Statistical analysis with ggplot2, dplyr, caret. Advanced data visualization.',
+            'Python': 'Backend processing with Flask. Data handling with pandas and numpy.',
+            'JavaScript': 'ES6+ features, async/await, Web APIs, DOM manipulation.',
+            'R': 'Statistical analysis with ggplot2, dplyr, corrplot.',
             'HTML5/CSS3': 'Semantic markup, responsive design, CSS Grid, Flexbox, animations.'
         };
 
@@ -173,7 +164,7 @@ class ApplicationManager {
     }
 
     startPerformanceMonitoring() {
-        // Performance monitoring
+        // Log basic performance metrics
         if ('performance' in window) {
             const perfData = {
                 loadTime: performance.now(),
@@ -238,10 +229,3 @@ document.head.appendChild(style);
 
 // Initialize application
 const app = new ApplicationManager();
-
-// Export for module usage
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = ApplicationManager;
-}
-
-console.log('Modern JavaScript application loaded by Gabriel Demetrios Lafis');

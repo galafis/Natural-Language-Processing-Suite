@@ -12,7 +12,7 @@
 ## English
 
 ### Overview
-This **Natural Language Processing (NLP) Suite** is an advanced, comprehensive platform designed for robust text analysis, data processing, and interactive visualization. It leverages a modern technology stack, integrating multiple programming languages to deliver professional-grade solutions for various NLP tasks. From real-time analytics to scalable architecture, this suite provides a powerful toolkit for developers and data scientists.
+This **Natural Language Processing (NLP) Suite** is a multi-language project demonstrating text processing, data analysis, and interactive visualization. It combines Python, JavaScript, and R into a full-stack application with a Flask backend, a responsive web frontend, and R-based statistical analysis.
 
 ### Author
 **Gabriel Demetrios Lafis**
@@ -21,24 +21,23 @@ This **Natural Language Processing (NLP) Suite** is an advanced, comprehensive p
 - GitHub: [galafis](https://github.com/galafis)
 
 ### Technologies Used
-This project integrates a diverse set of technologies to ensure high performance, scalability, and a rich user experience:
+This project uses the following technologies:
 
--   **Backend**: Python (Flask, FastAPI), SQLite
+-   **Backend**: Python (Flask)
 -   **Frontend**: HTML5, CSS3, JavaScript (ES6+)
 -   **Analytics**: R (ggplot2, dplyr, statistical modeling)
--   **Data Processing**: pandas, numpy, scikit-learn
+-   **Data Processing**: pandas, numpy
 -   **Styling**: CSS Grid, Flexbox, responsive design
 -   **Modern Web Features**: Async/await, Web APIs, ES6 classes
--   **Visualization**: Interactive charts, real-time dashboards
+-   **Visualization**: Charts via R (ggplot2) and frontend interactivity
 
 ### Features
 
 #### Core Functionality
--   **Advanced NLP Processing**: High-performance algorithms for various NLP tasks.
--   **Real-time Analytics**: Live data analysis and visualization capabilities.
--   **Interactive Web Interface**: Modern, responsive design for intuitive user interaction.
--   **Comprehensive Statistical Analysis**: R-based analytics and reporting tools.
--   **Scalable Architecture**: Designed for enterprise-level performance and future expansion.
+-   **Text Processing**: API endpoint for text transformation and analysis.
+-   **Analytics**: Data analysis and visualization via the web interface.
+-   **Interactive Web Interface**: Responsive design for user interaction.
+-   **Statistical Analysis**: R-based analytics and reporting tools.
 
 #### Web Interface
 -   **Modern UI/UX**: Semantic HTML5, accessible design, and professional styling.
@@ -46,10 +45,9 @@ This project integrates a diverse set of technologies to ensure high performance
 -   **Dynamic Interactivity**: JavaScript ES6+ powers interactive elements and real-time updates.
 
 #### Analytics & Reporting
--   **R Integration**: Seamless integration with R for advanced statistical modeling and data visualization.
--   **Automated Data Processing**: Tools for efficient data cleaning, transformation, and preparation.
--   **Rich Visualizations**: Generate interactive charts and comprehensive dashboards.
--   **Export Options**: Support for various report and data export formats (JSON, CSV, PDF).
+-   **R Integration**: R script for statistical modeling and data visualization.
+-   **Data Processing**: Tools for data loading, transformation, and analysis.
+-   **Visualizations**: Generate charts using ggplot2 and correlation plots.
 
 ### Installation
 
@@ -68,7 +66,7 @@ pip install -r requirements.txt
 cd ..
 
 # 3. R setup (install required packages)
-Rscript -e "install.packages(c(\'ggplot2\', \'dplyr\', \'corrplot\', \'plotly\'), repos=\'http://cran.us.r-project.org\')"
+Rscript -e "install.packages(c('ggplot2', 'dplyr', 'corrplot'), repos='http://cran.us.r-project.org')"
 
 # 4. Create data directory and sample data (if not present)
 mkdir -p data
@@ -79,7 +77,7 @@ echo "text,category\nhello world,greeting\nNLP is great,technology" > data/data.
 
 #### Running the Application
 
-1.  **Start the Python Backend (Flask/FastAPI)**
+1.  **Start the Python Backend**
     ```bash
     cd backend
     python app.py
@@ -88,7 +86,7 @@ echo "text,category\nhello world,greeting\nNLP is great,technology" > data/data.
 
 2.  **Access the Web Interface**
     Navigate to `http://localhost:5000` in your web browser.
-    The interactive dashboard provides real-time functionality and is responsive across devices.
+    The web interface is responsive across devices.
 
 3.  **Run R Analytics**
     You can execute the R analytics script independently:
@@ -117,7 +115,7 @@ python test_app.py
 
 ```
 Natural-Language-Processing-Suite/
-├── backend/            # Python backend (Flask/FastAPI) files
+├── backend/            # Python backend (Flask) files
 │   ├── app.py          # Main Python application
 │   ├── config.py       # Application configuration
 │   ├── test_app.py     # Unit tests
@@ -151,11 +149,10 @@ The Python backend exposes the following API endpoints:
 
 ```json
 {
-  "status": "success",
-  "processed_text": "Sample processed text",
-  "sentiment": "positive",
-  "confidence": 0.92,
-  "timestamp": "2024-10-09T20:00:00Z"
+  "original_text": "Sample text",
+  "processed_text": "Processed: SAMPLE TEXT",
+  "length": 11,
+  "timestamp": "2024-10-09T20:00:00"
 }
 ```
 
@@ -169,13 +166,13 @@ APP_CONFIG = {
     'debug': True,
     'host': '0.0.0.0',
     'port': 5000,
-    'max_file_size': '16MB'
+    'max_content_length': 16 * 1024 * 1024  # 16MB in bytes
 }
 
 ANALYTICS_CONFIG = {
     'enable_r_integration': True,
     'auto_visualization': True,
-    'export_formats': ['json', 'csv', 'pdf']
+    'export_formats': ['json', 'csv']
 }
 ```
 
@@ -202,12 +199,6 @@ python test_app.py -v
 #### Issue: R not installed
 **Solution:** R analytics is optional. You can use Python-only features if R is not available.
 
-### Performance Features
--   **Multi-threading**: Utilizes parallel processing for enhanced performance.
--   **Caching**: Implements intelligent caching mechanisms for faster response times.
--   **Memory Optimization**: Efficient memory usage and management for resource-intensive tasks.
--   **Scalability**: Supports horizontal scaling for enterprise-level deployments.
-
 ### License
 This project is licensed under the MIT License.
 
@@ -222,7 +213,7 @@ For any inquiries or support, please reach out via the email or LinkedIn provide
 ## Português
 
 ### Visão Geral
-Esta **Natural Language Processing (NLP) Suite** é uma plataforma avançada e abrangente, projetada para análise robusta de texto, processamento de dados e visualização interativa. Ela utiliza uma stack de tecnologia moderna, integrando múltiplas linguagens de programação para entregar soluções de nível profissional para diversas tarefas de NLP. Desde análises em tempo real até arquitetura escalável, esta suite oferece um poderoso conjunto de ferramentas para desenvolvedores e cientistas de dados.
+Esta **Natural Language Processing (NLP) Suite** é um projeto multi-linguagem que demonstra processamento de texto, análise de dados e visualização interativa. Ele combina Python, JavaScript e R em uma aplicação full-stack com backend Flask, frontend web responsivo e análise estatística baseada em R.
 
 ### Autor
 **Gabriel Demetrios Lafis**
@@ -231,24 +222,23 @@ Esta **Natural Language Processing (NLP) Suite** é uma plataforma avançada e a
 - GitHub: [galafis](https://github.com/galafis)
 
 ### Tecnologias Utilizadas
-Este projeto integra um conjunto diversificado de tecnologias para garantir alto desempenho, escalabilidade e uma rica experiência do usuário:
+Este projeto utiliza as seguintes tecnologias:
 
--   **Backend**: Python (Flask, FastAPI), SQLite
+-   **Backend**: Python (Flask)
 -   **Frontend**: HTML5, CSS3, JavaScript (ES6+)
 -   **Análises**: R (ggplot2, dplyr, modelagem estatística)
--   **Processamento de Dados**: pandas, numpy, scikit-learn
+-   **Processamento de Dados**: pandas, numpy
 -   **Estilização**: CSS Grid, Flexbox, design responsivo
 -   **Recursos Web Modernos**: Async/await, Web APIs, classes ES6
--   **Visualização**: Gráficos interativos, dashboards em tempo real
+-   **Visualização**: Gráficos via R (ggplot2) e interatividade no frontend
 
 ### Funcionalidades
 
 #### Funcionalidade Principal
--   **Processamento NLP Avançado**: Algoritmos de alta performance para diversas tarefas de NLP.
--   **Análises em Tempo Real**: Capacidades de análise e visualização de dados ao vivo.
--   **Interface Web Interativa**: Design moderno e responsivo para interação intuitiva do usuário.
--   **Análise Estatística Abrangente**: Ferramentas de análise e relatórios baseadas em R.
--   **Arquitetura Escalável**: Projetada para desempenho de nível empresarial e expansão futura.
+-   **Processamento de Texto**: Endpoint de API para transformação e análise de texto.
+-   **Análises**: Análise e visualização de dados via interface web.
+-   **Interface Web Interativa**: Design responsivo para interação do usuário.
+-   **Análise Estatística**: Ferramentas de análise e relatórios baseadas em R.
 
 #### Interface Web
 -   **UI/UX Moderna**: HTML5 semântico, design acessível e estilização profissional.
@@ -256,10 +246,9 @@ Este projeto integra um conjunto diversificado de tecnologias para garantir alto
 -   **Interatividade Dinâmica**: JavaScript ES6+ impulsiona elementos interativos e atualizações em tempo real.
 
 #### Análises e Relatórios
--   **Integração R**: Integração perfeita com R para modelagem estatística avançada e visualização de dados.
--   **Processamento Automatizado de Dados**: Ferramentas para limpeza, transformação e preparação eficiente de dados.
--   **Visualizações Ricas**: Geração de gráficos interativos e dashboards abrangentes.
--   **Opções de Exportação**: Suporte para vários formatos de exportação de relatórios e dados (JSON, CSV, PDF).
+-   **Integração R**: Script R para modelagem estatística e visualização de dados.
+-   **Processamento de Dados**: Ferramentas para carregamento, transformação e análise de dados.
+-   **Visualizações**: Geração de gráficos usando ggplot2 e plots de correlação.
 
 ### Instalação
 
@@ -278,7 +267,7 @@ pip install -r requirements.txt
 cd ..
 
 # 3. Configuração R (instalar pacotes necessários)
-Rscript -e "install.packages(c(\'ggplot2\', \'dplyr\', \'corrplot\', \'plotly\'), repos=\'http://cran.us.r-project.org\')"
+Rscript -e "install.packages(c('ggplot2', 'dplyr', 'corrplot'), repos='http://cran.us.r-project.org')"
 
 # 4. Criar diretório de dados e dados de exemplo (se não existirem)
 mkdir -p data
@@ -289,7 +278,7 @@ echo "text,category\nhello world,greeting\nNLP is great,technology" > data/data.
 
 #### Executando a Aplicação
 
-1.  **Iniciar o Backend Python (Flask/FastAPI)**
+1.  **Iniciar o Backend Python**
     ```bash
     cd backend
     python app.py
@@ -298,7 +287,7 @@ echo "text,category\nhello world,greeting\nNLP is great,technology" > data/data.
 
 2.  **Acessar a Interface Web**
     Navegue para `http://localhost:5000` no seu navegador web.
-    O dashboard interativo oferece funcionalidade em tempo real e é responsivo em todos os dispositivos.
+    A interface web é responsiva em todos os dispositivos.
 
 3.  **Executar Análises R**
     Você pode executar o script de análises R independentemente:
@@ -327,7 +316,7 @@ python test_app.py
 
 ```
 Natural-Language-Processing-Suite/
-├── backend/            # Arquivos do backend Python (Flask/FastAPI)
+├── backend/            # Arquivos do backend Python (Flask)
 │   ├── app.py          # Aplicação Python principal
 │   ├── config.py       # Configurações da aplicação
 │   ├── test_app.py     # Testes unitários
@@ -386,13 +375,13 @@ APP_CONFIG = {
     'debug': True,
     'host': '0.0.0.0',
     'port': 5000,
-    'max_file_size': '16MB'
+    'max_content_length': 16 * 1024 * 1024  # 16MB em bytes
 }
 
 ANALYTICS_CONFIG = {
     'enable_r_integration': True,
     'auto_visualization': True,
-    'export_formats': ['json', 'csv', 'pdf']
+    'export_formats': ['json', 'csv']
 }
 ```
 
@@ -418,12 +407,6 @@ python test_app.py -v
 
 #### Problema: R não instalado
 **Solução:** A análise R é opcional. Você pode usar apenas os recursos Python se o R não estiver disponível.
-
-### Recursos de Performance
--   **Multi-threading**: Utiliza processamento paralelo para melhor desempenho.
--   **Cache**: Implementa mecanismos de cache inteligentes para tempos de resposta mais rápidos.
--   **Otimização de Memória**: Uso eficiente de memória e gerenciamento para tarefas intensivas em recursos.
--   **Escalabilidade**: Suporta escalonamento horizontal para implantações de nível empresarial.
 
 ### Licença
 Este projeto está licenciado sob a Licença MIT.
