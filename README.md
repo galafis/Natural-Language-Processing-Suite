@@ -1,283 +1,189 @@
-# 🗣️ Natural Language Processing Suite
+# Natural Language Processing Suite
 
-> Comprehensive NLP toolkit with text classification, named entity recognition, sentiment analysis, and text summarization. Built with transformers, spaCy, and custom models.
+<div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.12-3776AB.svg)](https://img.shields.io/badge/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg)](https://img.shields.io/badge/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![NLP](https://img.shields.io/badge/NLP-FF6F00?style=for-the-badge&logo=bookstack&logoColor=white)
 
-[English](#english) | [Português](#português)
+</div>
+
+**[English](#english)** | **[Portugues (BR)](#portugues-br)**
 
 ---
 
 ## English
 
-### 🎯 Overview
+### Overview
 
-**Natural Language Processing Suite** is a production-grade Python application complemented by CSS, HTML, JavaScript, R that showcases modern software engineering practices including clean architecture, comprehensive testing, containerized deployment, and CI/CD readiness.
+A comprehensive Natural Language Processing toolkit implementing core NLP algorithms from scratch in Python. Includes tokenization, stemming, stop word removal, TF-IDF vectorization, lexicon-based sentiment analysis, Naive Bayes text classification, and word frequency analysis.
 
-The codebase comprises **797 lines** of source code organized across **7 modules**, following industry best practices for maintainability, scalability, and code quality.
-
-### ✨ Key Features
-
-- **🗣️ Text Processing**: Tokenization, stemming, and lemmatization
-- **📊 Sentiment Analysis**: Multi-language sentiment classification
-- **🔍 Named Entity Recognition**: Entity extraction and classification
-- **📈 Text Analytics**: TF-IDF, word embeddings, and topic modeling
-- **🐳 Containerized**: Docker support for consistent deployment
-- **🏗️ Object-Oriented**: 2 core classes with clean architecture
-
-### 🏗️ Architecture
+### Architecture
 
 ```mermaid
-graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
+graph TD
+    A[Raw Text Input] --> B[Tokenizer]
+    B --> C[Stop Word Remover]
+    C --> D[Stemmer]
+    D --> E{Analysis Pipeline}
+    E --> F[TF-IDF Vectorizer]
+    E --> G[Sentiment Analyzer]
+    E --> H[Naive Bayes Classifier]
+    E --> I[Word Frequency Analyzer]
+    F --> J[Document Vectors]
+    G --> K[Sentiment Scores]
+    H --> L[Text Categories]
+    I --> M[Frequency Report]
+```
+
+### Pipeline Flow
+
+```mermaid
+flowchart LR
+    subgraph Preprocessing
+        A1[Tokenization] --> A2[Stop Word Removal]
+        A2 --> A3[Stemming]
     end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
+    subgraph Vectorization
+        A3 --> B1[TF Computation]
+        B1 --> B2[IDF Computation]
+        B2 --> B3[TF-IDF Matrix]
     end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
+    subgraph Classification
+        B3 --> C1[Naive Bayes]
+        C1 --> C2[Class Probabilities]
+        C2 --> C3[Predicted Label]
+    end
 ```
 
-### 🚀 Quick Start
+### Features
 
-#### Prerequisites
+- **Tokenizer**: Word, sentence, character, and n-gram tokenization
+- **Stemmer**: Simplified Porter stemmer implementation
+- **Stop Words**: English and Portuguese stop word removal with custom lists
+- **TF-IDF Vectorizer**: Fit-transform API with configurable max features
+- **Sentiment Analysis**: Lexicon-based with negation detection and intensifiers
+- **Naive Bayes**: Multinomial classifier with Laplace smoothing and probability output
+- **Word Frequency**: Distribution analysis, type-token ratio, and text comparison
 
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/galafis/Natural-Language-Processing-Suite.git
-cd Natural-Language-Processing-Suite
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-#### Running
-
-```bash
-# Run the application
-python backend/app.py
-```
-
-### 🧪 Testing
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Project Structure
+### Project Structure
 
 ```
 Natural-Language-Processing-Suite/
-├── analytics/
-│   └── analytics.R
-├── assets/
-├── backend/
-│   ├── app.py
-│   ├── config.py
-│   ├── requirements.txt
-│   └── test_app.py
-├── data/
-├── frontend/
-│   └── app.js
-├── Dockerfile
-├── LICENSE
+├── src/
+│   ├── __init__.py
+│   ├── tokenizer.py         # Tokenization strategies
+│   ├── stemmer.py           # Porter stemmer
+│   ├── stopwords.py         # Stop word removal (EN/PT)
+│   ├── tfidf.py             # TF-IDF vectorizer
+│   ├── sentiment.py         # Lexicon sentiment analysis
+│   ├── naive_bayes.py       # Naive Bayes classifier
+│   └── word_frequency.py    # Word frequency analysis
+├── tests/
+│   └── test_nlp_suite.py
+├── requirements.txt
 └── README.md
 ```
 
-### 🛠️ Tech Stack
+### Installation
 
-| Technology | Description | Role |
-|------------|-------------|------|
-| **Python** | Core Language | Primary |
-| **Docker** | Containerization platform | Framework |
-| R | 1 files | Supporting |
-| JavaScript | 1 files | Supporting |
-| HTML | 1 files | Supporting |
-| CSS | 1 files | Supporting |
+```bash
+git clone https://github.com/galafis/Natural-Language-Processing-Suite.git
+cd Natural-Language-Processing-Suite
+pip install -r requirements.txt
+```
 
-### 🤝 Contributing
+### Usage
 
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+```python
+from src.tokenizer import Tokenizer
+from src.stopwords import StopWordRemover
+from src.tfidf import TfidfVectorizer
+from src.sentiment import LexiconSentimentAnalyzer
+from src.naive_bayes import NaiveBayesClassifier
 
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+# Tokenization pipeline
+tokenizer = Tokenizer()
+tokens = tokenizer.word_tokenize("Natural language processing is fascinating.")
 
-### 📄 License
+# Remove stop words
+remover = StopWordRemover()
+clean_tokens = remover.remove(tokens)
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+# Sentiment analysis
+analyzer = LexiconSentimentAnalyzer()
+result = analyzer.analyze("This product is excellent and amazing!")
+print(result["sentiment"], result["compound"])
 
-### 👤 Author
+# Text classification
+clf = NaiveBayesClassifier()
+clf.fit(["great product", "terrible service"], ["positive", "negative"])
+print(clf.predict("great service"))
+```
+
+### Running Tests
+
+```bash
+pytest tests/ -v
+```
+
+### Author
 
 **Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+- [GitHub](https://github.com/galafis)
+- [LinkedIn](https://www.linkedin.com/in/gabriel-demetrios-lafis-62197711b)
 
 ---
 
-## Português
+## Portugues BR
 
-### 🎯 Visão Geral
+### Visao Geral
 
-**Natural Language Processing Suite** é uma aplicação Python de nível profissional, complementada por CSS, HTML, JavaScript, R que demonstra práticas modernas de engenharia de software, incluindo arquitetura limpa, testes abrangentes, implantação containerizada e prontidão para CI/CD.
+Um toolkit completo de Processamento de Linguagem Natural implementando algoritmos fundamentais de NLP do zero em Python. Inclui tokenizacao, stemming, remocao de stop words, vetorizacao TF-IDF, analise de sentimento baseada em lexico, classificacao de texto Naive Bayes e analise de frequencia de palavras.
 
-A base de código compreende **797 linhas** de código-fonte organizadas em **7 módulos**, seguindo as melhores práticas do setor para manutenibilidade, escalabilidade e qualidade de código.
-
-### ✨ Funcionalidades Principais
-
-- **🗣️ Text Processing**: Tokenization, stemming, and lemmatization
-- **📊 Sentiment Analysis**: Multi-language sentiment classification
-- **🔍 Named Entity Recognition**: Entity extraction and classification
-- **📈 Text Analytics**: TF-IDF, word embeddings, and topic modeling
-- **🐳 Containerized**: Docker support for consistent deployment
-- **🏗️ Object-Oriented**: 2 core classes with clean architecture
-
-### 🏗️ Arquitetura
+### Arquitetura
 
 ```mermaid
-graph TB
-    subgraph Core["🏗️ Core"]
-        A[Main Module]
-        B[Business Logic]
-        C[Data Processing]
-    end
-    
-    subgraph Support["🔧 Support"]
-        D[Configuration]
-        E[Utilities]
-        F[Tests]
-    end
-    
-    A --> B --> C
-    D --> A
-    E --> B
-    F -.-> B
-    
-    style Core fill:#e1f5fe
-    style Support fill:#f3e5f5
+graph TD
+    A[Entrada de Texto] --> B[Tokenizador]
+    B --> C[Remocao de Stop Words]
+    C --> D[Stemmer]
+    D --> E{Pipeline de Analise}
+    E --> F[Vetorizador TF-IDF]
+    E --> G[Analisador de Sentimento]
+    E --> H[Classificador Naive Bayes]
+    E --> I[Analisador de Frequencia]
+    F --> J[Vetores de Documento]
+    G --> K[Scores de Sentimento]
+    H --> L[Categorias de Texto]
+    I --> M[Relatorio de Frequencia]
 ```
 
-### 🚀 Início Rápido
+### Funcionalidades
 
-#### Prerequisites
+- **Tokenizador**: Tokenizacao por palavras, sentencas, caracteres e n-gramas
+- **Stemmer**: Implementacao simplificada do stemmer Porter
+- **Stop Words**: Remocao em Ingles e Portugues com listas customizaveis
+- **TF-IDF**: Vetorizador com API fit-transform e features configuraveis
+- **Analise de Sentimento**: Baseada em lexico com deteccao de negacao e intensificadores
+- **Naive Bayes**: Classificador multinomial com suavizacao de Laplace
+- **Frequencia de Palavras**: Analise de distribuicao e comparacao de textos
 
-- Python 3.12+
-- pip (Python package manager)
-
-#### Installation
+### Instalacao
 
 ```bash
-# Clone the repository
 git clone https://github.com/galafis/Natural-Language-Processing-Suite.git
 cd Natural-Language-Processing-Suite
-
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
-#### Running
+### Executando os Testes
 
 ```bash
-# Run the application
-python backend/app.py
+pytest tests/ -v
 ```
 
-### 🧪 Testing
+---
 
-```bash
-# Run all tests
-pytest
+## License
 
-# Run with coverage report
-pytest --cov --cov-report=html
-
-# Run specific test module
-pytest tests/test_main.py -v
-
-# Run with detailed output
-pytest -v --tb=short
-```
-
-### 📁 Estrutura do Projeto
-
-```
-Natural-Language-Processing-Suite/
-├── analytics/
-│   └── analytics.R
-├── assets/
-├── backend/
-│   ├── app.py
-│   ├── config.py
-│   ├── requirements.txt
-│   └── test_app.py
-├── data/
-├── frontend/
-│   └── app.js
-├── Dockerfile
-├── LICENSE
-└── README.md
-```
-
-### 🛠️ Stack Tecnológica
-
-| Tecnologia | Descrição | Papel |
-|------------|-----------|-------|
-| **Python** | Core Language | Primary |
-| **Docker** | Containerization platform | Framework |
-| R | 1 files | Supporting |
-| JavaScript | 1 files | Supporting |
-| HTML | 1 files | Supporting |
-| CSS | 1 files | Supporting |
-
-### 🤝 Contribuindo
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar um Pull Request.
-
-### 📄 Licença
-
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-### 👤 Autor
-
-**Gabriel Demetrios Lafis**
-- GitHub: [@galafis](https://github.com/galafis)
-- LinkedIn: [Gabriel Demetrios Lafis](https://linkedin.com/in/gabriel-demetrios-lafis)
+MIT License - see [LICENSE](LICENSE) for details.
